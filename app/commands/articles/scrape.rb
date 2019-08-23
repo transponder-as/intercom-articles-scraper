@@ -77,7 +77,7 @@ module Articles
       record = Article.new(article)
       if record.valid?
         record.save
-        Rails.logger.info "Article with id " + record.id + " created." unless quiet
+        Rails.logger.info "Article with id #{record.id} created." unless quiet
       else
         record_error(article['page_slug'].to_s)
       end
@@ -86,7 +86,7 @@ module Articles
     def update_article(article)
       record = Article.find(article['id'])
       begin record.update_attributes(article)
-        Rails.logger.info "Article with id " + record.id.to_s + " updated." unless quiet
+        Rails.logger.info "Article with id #{record.id} updated." unless quiet
       rescue ActiveRecord::RecordInvalid => invalid
         Rails.logger.warn (invalid.record.errors.inspect)
       end
